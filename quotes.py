@@ -16,6 +16,16 @@ session_db = client.session_db
 
 import uuid
 
+@app.route("/sessdump", methods=["GET"])
+def get_dump():
+    session_collection = session_db.session_collection
+    session_db.drop_collection(session_collection)
+    session_data = {"session_id": 0, "user": 0}
+    session_collection.insert_one(session_data)
+    response = redirect("/login")
+    response.delete_cookie("session_id")
+    return response
+
 @app.route("/", methods=["GET"])
 @app.route("/quotes", methods=["GET"])
 def get_quotes():
