@@ -1,6 +1,6 @@
 # Quotes CRUD Application
 
-This is a Flask application that includes everything working up through topic-09-sessions in KSU's Web Development I. One additional feature added is a show-all ability. The front-end has been redeveloped in Bootstrap 5. Some additional functionality is included in code but not currently used, such as the functions needed to hash and check passwords worked on in class. This application is served off an Ubuntu-Server in my home, accessable through:
+This is a Python Flask application that includes everything working up through topic-09-sessions in KSU's Web Development I. Two features added are a show-all ability, and a quote deletion confirmation. The front-end has been redeveloped in Bootstrap 5. Some additional functionality is included in code but not currently used, such as the functions needed to hash and check passwords worked on in class. To prepare the application to accept password logins, I had CertBot install a SSL certificate issued by LetsEncrypt. This application is served off an Ubuntu-Server in my home, accessable through:
 
 **http://quotes.steveduber.com**
 
@@ -25,11 +25,27 @@ A lot of time was spent avoiding codespaces to set up a virtual python environme
 ## nginx configuration
 
     server {
-      listen      80;
-      server_name quotes.steveduber.com;
-  
-      location / {
+    listen 443 ssl; # managed by Certbot
+    server_name quotes.steveduber.com;
+
+    ssl_certificate /etc/letsencrypt/live/quotes.steveduber.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/quotes.steveduber.com/privkey.pem; # managed by Certbot
+
+	location / {
         include proxy_params;
         proxy_pass http://unix:/home/dubersj/quotesweb/quotesweb.sock;
-      }
+    }
+
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+    }
+    server {
+        if ($host = quotes.steveduber.com) {
+            return 301 https://$host$request_uri;
+        } # managed by Certbot
+
+	    listen      80;
+        server_name quotes.steveduber.com;
+        return 404; # managed by Certbot
     }
