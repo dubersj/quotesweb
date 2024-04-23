@@ -1,0 +1,42 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <div class="d-flex justify-content-between">
+        <div class="p-5">
+            <h1>Quotes<span class="badge bg-secondary">CRUD</span></h1>
+        </div>
+        <div class="p-5">
+            <h3 class="text-primary">Please login!</h3>
+        </div>
+    </div>
+    <form action="/login" class="p-5 m-5 bg-light border" method="POST">
+        <div class="mb-3 mt-3">
+            <label for="user" class="form-label">User/Submitter:</label>
+            <input type="text" class="form-control" id="user" placeholder="Enter name here..." name="user">
+        </div>
+        <div class="text-danger mb-3 mt-3">
+            Please be aware that in the application's current form,
+            anybody that wants to remove or edit your quotes must 
+            simply guess your username in the above box.
+        </div>
+        <div class="text-muted mb-3">
+            Please see the README <a href="https://github.com/dubersj/quotesweb">here</a> 
+            for additional features added, password functions, and other info.
+        </div>
+        <div class="form-check mb-3">
+            <label class="form-check-label text-primary">
+                <input class="form-check-input" type="checkbox" name="agree" required> I've Read the Above
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form> 
+</body>
+
+</html>
