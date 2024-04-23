@@ -1,11 +1,10 @@
 # Quotes CRUD Application
 
-This is a Flask application that includes everything working up through topic-09-sessions in KSU's Web Development I. The front-end has been redeveloped in Bootstrap 5. This application is served off an Ubuntu-Server in my home, accessable through:
+This is a Flask application that includes everything working up through topic-09-sessions in KSU's Web Development I. One additional feature added is a show-all ability. The front-end has been redeveloped in Bootstrap 5. Some additional functionality is included in code but not currently used, such as the functions needed to hash and check passwords worked on in class. This application is served off an Ubuntu-Server in my home, accessable through:
 
 **http://quotes.steveduber.com**
 
-A lot of time was spent avoiding codespaces to set up a virtual python environment with Flask, Mongita, and Gunicorn as the Web Server Gateway Interface. Traffic is first passed through the Nginx reverse proxy before it reaches the WSGI socket. This is also enabled as a system service. Some additional functionality is included but not currently used, such as the functions needed to hash and check passwords worked on in class.
-
+A lot of time was spent avoiding codespaces to set up a virtual python environment with Flask, Mongita, and Gunicorn as the Web Server Gateway Interface. Traffic is first passed through the Nginx reverse proxy before it reaches the WSGI socket. This is also enabled as a system service.
 
 ## quotesweb.service
 
